@@ -56,3 +56,7 @@ CodeCoverage/
 TestResult.xml
 nunit-*.xml
 /.idea/
+/WebApplication1/.vs/ProjectEvaluation
+/WebApplication1/.vs/WebApplication1.slnx/DesignTimeBuild
+/WebApplication1/.vs/WebApplication1.slnx/FileContentIndex
+/WebApplication1/.vs/WebApplication1.slnx/v18
