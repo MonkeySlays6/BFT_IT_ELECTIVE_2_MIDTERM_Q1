@@ -3,14 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\gionf\\Downloads\\GitHub\\BFT_IT_ELECTIVE_2_MIDTERM_Q1\\ConsoleApp1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1A6100B2-A996-4199-BF8F-362650FACBB6}|WebApplication2\\WebApplication2.csproj|c:\\users\\gionf\\downloads\\github\\bft_it_elective_2_midterm_q1\\consoleapp1\\webapplication2\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1A6100B2-A996-4199-BF8F-362650FACBB6}|WebApplication2\\WebApplication2.csproj|solutionrelative:webapplication2\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1A6100B2-A996-4199-BF8F-362650FACBB6}|WebApplication2\\WebApplication2.csproj|c:\\users\\gionf\\downloads\\github\\bft_it_elective_2_midterm_q1\\consoleapp1\\webapplication2\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1A6100B2-A996-4199-BF8F-362650FACBB6}|WebApplication2\\WebApplication2.csproj|solutionrelative:webapplication2\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1A6100B2-A996-4199-BF8F-362650FACBB6}|WebApplication2\\WebApplication2.csproj|c:\\users\\gionf\\downloads\\github\\bft_it_elective_2_midterm_q1\\consoleapp1\\webapplication2\\models\\pokedexmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1A6100B2-A996-4199-BF8F-362650FACBB6}|WebApplication2\\WebApplication2.csproj|solutionrelative:webapplication2\\models\\pokedexmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -21,6 +13,14 @@
     {
       "AbsoluteMoniker": "D:0:0:{1A6100B2-A996-4199-BF8F-362650FACBB6}|WebApplication2\\WebApplication2.csproj|c:\\users\\gionf\\downloads\\github\\bft_it_elective_2_midterm_q1\\consoleapp1\\webapplication2\\models\\userpokemon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1A6100B2-A996-4199-BF8F-362650FACBB6}|WebApplication2\\WebApplication2.csproj|solutionrelative:webapplication2\\models\\userpokemon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A6100B2-A996-4199-BF8F-362650FACBB6}|WebApplication2\\WebApplication2.csproj|c:\\users\\gionf\\downloads\\github\\bft_it_elective_2_midterm_q1\\consoleapp1\\webapplication2\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1A6100B2-A996-4199-BF8F-362650FACBB6}|WebApplication2\\WebApplication2.csproj|solutionrelative:webapplication2\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A6100B2-A996-4199-BF8F-362650FACBB6}|WebApplication2\\WebApplication2.csproj|c:\\users\\gionf\\downloads\\github\\bft_it_elective_2_midterm_q1\\consoleapp1\\webapplication2\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A6100B2-A996-4199-BF8F-362650FACBB6}|WebApplication2\\WebApplication2.csproj|solutionrelative:webapplication2\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 13,
+          "SelectedChildIndex": 14,
           "Children": [
             {
               "$type": "Bookmark",
@@ -70,10 +70,6 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             },
             {
@@ -86,20 +82,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\gionf\\Downloads\\GitHub\\BFT_IT_ELECTIVE_2_MIDTERM_Q1\\ConsoleApp1\\WebApplication2\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "WebApplication2\\Views\\Shared\\_Layout.cshtml",
               "ToolTip": "C:\\Users\\gionf\\Downloads\\GitHub\\BFT_IT_ELECTIVE_2_MIDTERM_Q1\\ConsoleApp1\\WebApplication2\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "WebApplication2\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAAAEAAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC4AAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-07-25T12:04:18.763Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\gionf\\Downloads\\GitHub\\BFT_IT_ELECTIVE_2_MIDTERM_Q1\\ConsoleApp1\\WebApplication2\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "WebApplication2\\Controllers\\HomeController.cs",
@@ -107,12 +103,11 @@
               "RelativeToolTip": "WebApplication2\\Controllers\\HomeController.cs",
               "ViewState": "AgIAAEMAAAAAAAAAAAAAAFsAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-25T12:02:24.295Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-25T12:02:24.295Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "PokedexModels.cs",
               "DocumentMoniker": "C:\\Users\\gionf\\Downloads\\GitHub\\BFT_IT_ELECTIVE_2_MIDTERM_Q1\\ConsoleApp1\\WebApplication2\\Models\\PokedexModels.cs",
               "RelativeDocumentMoniker": "WebApplication2\\Models\\PokedexModels.cs",
@@ -125,7 +120,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "UserPokemon.cs",
               "DocumentMoniker": "C:\\Users\\gionf\\Downloads\\GitHub\\BFT_IT_ELECTIVE_2_MIDTERM_Q1\\ConsoleApp1\\WebApplication2\\Models\\UserPokemon.cs",
               "RelativeDocumentMoniker": "WebApplication2\\Models\\UserPokemon.cs",
@@ -138,13 +133,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "PokemonService.cs",
               "DocumentMoniker": "C:\\Users\\gionf\\Downloads\\GitHub\\BFT_IT_ELECTIVE_2_MIDTERM_Q1\\ConsoleApp1\\WebApplication2\\Services\\PokemonService.cs",
               "RelativeDocumentMoniker": "WebApplication2\\Services\\PokemonService.cs",
               "ToolTip": "C:\\Users\\gionf\\Downloads\\GitHub\\BFT_IT_ELECTIVE_2_MIDTERM_Q1\\ConsoleApp1\\WebApplication2\\Services\\PokemonService.cs",
               "RelativeToolTip": "WebApplication2\\Services\\PokemonService.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAxwBoAAAA5AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-25T11:47:35.88Z",
               "EditorCaption": ""
