@@ -7,6 +7,8 @@ namespace PokedexApi.Models
         public string Username { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string PasswordHash { get; set; } = string.Empty;
+
+        // Isolated Pokédex state per user:
         public List<int> CaughtPokemonIds { get; set; } = new List<int>();
     }
 }

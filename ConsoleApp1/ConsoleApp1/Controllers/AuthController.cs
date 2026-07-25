@@ -1,11 +1,11 @@
 ﻿// Controllers/AuthController.cs
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using PokedexApi.Data;
 using PokedexApi.DTOs;
 using PokedexApi.Models;
 using System.IdentityModel.Tokens.Jwt;
-using System.Runtime.InteropServices;
 using System.Security.Claims;
 using System.Text;
 
