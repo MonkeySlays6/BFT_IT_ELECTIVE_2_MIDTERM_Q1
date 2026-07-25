@@ -1,8 +1,7 @@
 ﻿using System.Net.Http.Json;
-using WebApplication1.Models;
-using WebApplication1.Data;
+using WebApplication2.Models;
 
-namespace WebApplication1.Services
+namespace WebApplication2.Services
 {
     public class PokemonService
     {
@@ -15,7 +14,7 @@ namespace WebApplication1.Services
 
         public async Task<Pokemon?> GetPokemon(string name)
         {
-            var response = await _httpClient.GetFromJsonAsync<PokeApiResponse>(
+            var response = await _httpClient.GetFromJsonAsync<PokeDetailResponse>(
                 $"https://pokeapi.co/api/v2/pokemon/{name.ToLower()}");
 
             if (response == null)
@@ -25,12 +24,7 @@ namespace WebApplication1.Services
             {
                 Id = response.id,
                 Name = response.name,
-                Image = response.sprites.front_default,
-                Height = response.height,
-                Weight = response.weight,
-                Types = response.types
-                    .Select(t => t.type.name)
-                    .ToList()
+                ImageUrl = response.sprites.front_default
             };
         }
 
@@ -41,32 +35,29 @@ namespace WebApplication1.Services
             if (pokemon == null)
                 return;
 
-            StaticData.UserPokemons.Add(new UserPokemon
+            else if (!AppData.CaughtPokemon.ContainsKey(username))
             {
-                Username = username,
-                Pokemon = pokemon,
-                DateCaught = DateTime.Now
-            });
+                AppData.CaughtPokemon[username] = new List<Pokemon>();
+            }
+
+            AppData.CaughtPokemon[username].Add(pokemon);
         }
         public void ReleasePokemon(string username, int pokemonId)
         {
-            var pokemon = StaticData.UserPokemons
-                .FirstOrDefault(x =>
-                    x.Username == username &&
-                    x.Pokemon.Id == pokemonId);
+            var pokemon = AppData.CaughtPokemon[username]
+                .FirstOrDefault(x => x.Id == pokemonId);
 
             if (pokemon != null)
             {
-                StaticData.UserPokemons.Remove(pokemon);
+                AppData.CaughtPokemon[username].Remove(pokemon);
             }
         }
 
         public List<Pokemon> GetUserPokemon(string username)
         {
-            return StaticData.UserPokemons
-                .Where(x => x.Username == username)
-                .Select(x => x.Pokemon)
-                .ToList();
+            return AppData.CaughtPokemon.ContainsKey(username)
+                ? AppData.CaughtPokemon[username]
+                : new List<Pokemon>();
         }
 
     }

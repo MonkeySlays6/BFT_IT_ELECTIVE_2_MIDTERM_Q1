@@ -1,6 +1,6 @@
-﻿namespace WebApplication1.Models
+﻿namespace WebApplication2.Models
 {
-    public class PokeApiResponse
+    public class PokeDetailResponse
     {
         public int id { get; set; }
         public string name { get; set; }
