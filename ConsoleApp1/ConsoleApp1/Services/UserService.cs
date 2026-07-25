@@ -1,34 +1,48 @@
 ﻿namespace ConsoleApp1.Services;
 
 using ConsoleApp1.DTO;
+using ConsoleApp1.DTOs;
 using ConsoleApp1.Models;
 
 public class UserService
 {
+    // Mock database for testing
+    private static readonly List<User> Users = [];
+
     public User RegisterUser(RegisterUserDto dto)
     {
-        // 1. Create the User entity
         var newUser = new User
         {
+            Id = Users.Count + 1,
             Username = dto.Username,
             Email = dto.Email,
-            PasswordHash = HashPassword(dto.Password) // Always hash passwords!
+            PasswordHash = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(dto.Password))
         };
 
-        // 2. Create the unique UserProfile linked to this user
         newUser.Profile = new UserProfile
         {
-            TrainerName = string.IsNullOrEmpty(dto.TrainerName) ? dto.Username : dto.TrainerName,
-            FavoritePokemon = string.IsNullOrEmpty(dto.FavoritePokemon) ? "Pikachu" : dto.FavoritePokemon
+            Id = newUser.Id,
+            UserId = newUser.Id,
+            TrainerName = string.IsNullOrWhiteSpace(dto.TrainerName) ? dto.Username : dto.TrainerName,
+            FavoritePokemon = string.IsNullOrWhiteSpace(dto.FavoritePokemon) ? "Pikachu" : dto.FavoritePokemon
         };
 
-        // 3. Save to database via DbContext here...
+        Users.Add(newUser);
         return newUser;
     }
 
-    private string HashPassword(string password)
+    public UserProfileDto? GetUserProfile(int userId)
     {
-        // Placeholder: Use BCrypt, Identity, or Argon2 in production
-        return Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(password));
+        var user = Users.FirstOrDefault(u => u.Id == userId);
+        if (user is null) return null;
+
+        return new UserProfileDto
+        {
+            UserId = user.Id,
+            Username = user.Username,
+            TrainerName = user.Profile.TrainerName,
+            FavoritePokemon = user.Profile.FavoritePokemon,
+            AvatarUrl = user.Profile.AvatarUrl
+        };
     }
 }

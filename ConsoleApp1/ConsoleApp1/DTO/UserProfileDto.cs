@@ -1,4 +1,4 @@
-﻿namespace ConsoleApp1.DTO;
+﻿namespace ConsoleApp1.DTOs;
 
 public class UserProfileDto
 {
