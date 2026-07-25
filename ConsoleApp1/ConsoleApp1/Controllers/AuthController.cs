@@ -1,5 +1,4 @@
 ﻿// Controllers/AuthController.cs
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using PokedexApi.Data;
@@ -22,6 +21,7 @@ namespace PokedexApi.Controllers
             _configuration = configuration;
         }
 
+        // POST: api/auth/register
         [HttpPost("register")]
         public IActionResult Register([FromBody] RegisterDto dto)
         {
@@ -56,10 +56,45 @@ namespace PokedexApi.Controllers
             {
                 Message = "Trainer registered successfully!",
                 Token = token,
-                Username = newUser.Username
+                Username = newUser.Username,
+                Email = newUser.Email
             });
         }
 
+        // POST: api/auth/login
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] LoginDto dto)
+        {
+            // 1. Find user by Username or Email
+            var user = UserStore.Users.FirstOrDefault(u =>
+                u.Username.Equals(dto.UsernameOrEmail, StringComparison.OrdinalIgnoreCase) ||
+                u.Email.Equals(dto.UsernameOrEmail, StringComparison.OrdinalIgnoreCase));
+
+            if (user == null)
+            {
+                return Unauthorized(new { message = "Invalid username/email or password." });
+            }
+
+            // 2. Verify password with BCrypt
+            bool isValidPassword = BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash);
+            if (!isValidPassword)
+            {
+                return Unauthorized(new { message = "Invalid username/email or password." });
+            }
+
+            // 3. Generate JWT Token
+            var token = GenerateJwtToken(user);
+
+            return Ok(new AuthResponseDto
+            {
+                Message = "Login successful!",
+                Token = token,
+                Username = user.Username,
+                Email = user.Email
+            });
+        }
+
+        // Helper Method to Create JWT Tokens
         private string GenerateJwtToken(ApplicationUser user)
         {
             var jwtSecret = _configuration["Jwt:Secret"] ?? "SuperSecretKeyWithMinimum32CharactersLength!";

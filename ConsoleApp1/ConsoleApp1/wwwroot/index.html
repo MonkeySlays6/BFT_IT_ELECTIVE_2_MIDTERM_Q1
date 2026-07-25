@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pokédex Trainer App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background: #f4f4f9;
+            display: flex;
+            justify-content: center;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            width: 380px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .tab-btn {
+            width: 48%;
+            padding: 8px;
+            border: none;
+            background: #e0e0e0;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+            .tab-btn.active {
+                background: #e3350d;
+                color: white;
+            }
+
+        input, button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            box-sizing: border-box;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .submit-btn {
+            background: #e3350d;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+            .submit-btn:hover {
+                background: #c22900;
+            }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card" id="auth-container">
+        <!-- Tabs to switch between Login and Register -->
+        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+            <button id="tab-register-btn" class="tab-btn active" onclick="showTab('register')">Register</button>
+            <button id="tab-login-btn" class="tab-btn" onclick="showTab('login')">Login</button>
+        </div>
+
+        <!-- Register Section -->
+        <div id="register-section">
+            <h2>Register Trainer</h2>
+            <input type="text" id="reg-username" placeholder="Username" />
+            <input type="email" id="reg-email" placeholder="Email" />
+            <input type="password" id="reg-password" placeholder="Password (min 6 chars)" />
+            <button class="submit-btn" onclick="registerTrainer()">Register</button>
+            <p id="reg-message" class="error"></p>
+        </div>
+
+        <!-- Login Section -->
+        <div id="login-section" style="display: none;">
+            <h2>Trainer Login</h2>
+            <input type="text" id="login-input" placeholder="Username or Email" />
+            <input type="password" id="login-password" placeholder="Password" />
+            <button class="submit-btn" onclick="loginTrainer()">Login</button>
+            <p id="login-message" class="error"></p>
+        </div>
+    </div>
+
+    <!-- Pokédex Section (Visible after Auth) -->
+    <div class="card" id="pokedex-section" style="display:none;">
+        <h2>My Pokédex</h2>
+        <p>Welcome back, <b id="trainer-name" style="color: #e3350d;"></b>!</p>
+        <hr />
+        <input type="number" id="pokemon-id" placeholder="Enter Pokémon ID (e.g. 25)" />
+        <button class="submit-btn" onclick="catchPokemon()">Catch Pokémon</button>
+        <button onclick="loadMyPokedex()" style="background: #3b4cca; color: white;">Refresh My List</button>
+        <div id="caught-list" style="margin-top: 15px;"></div>
+        <button onclick="logout()" style="background: #666; color: white; margin-top: 20px;">Logout</button>
+    </div>
+
+    <script>
+        let userToken = "";
+
+        function showTab(tab) {
+            document.getElementById('register-section').style.display = tab === 'register' ? 'block' : 'none';
+            document.getElementById('login-section').style.display = tab === 'login' ? 'block' : 'none';
+            document.getElementById('tab-register-btn').className = `tab-btn ${tab === 'register' ? 'active' : ''}`;
+            document.getElementById('tab-login-btn').className = `tab-btn ${tab === 'login' ? 'active' : ''}`;
+        }
+
+        async function registerTrainer() {
+            const username = document.getElementById('reg-username').value;
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-password').value;
+
+            const response = await fetch('/api/auth/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, email, password })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                onLoginSuccess(data);
+            } else {
+                document.getElementById('reg-message').innerText = data.message || "Registration failed";
+            }
+        }
+
+        async function loginTrainer() {
+            const usernameOrEmail = document.getElementById('login-input').value;
+            const password = document.getElementById('login-password').value;
+
+            const response = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ usernameOrEmail, password })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                onLoginSuccess(data);
+            } else {
+                document.getElementById('login-message').innerText = data.message || "Login failed";
+            }
+        }
+
+        function onLoginSuccess(data) {
+            userToken = data.token;
+            document.getElementById('auth-container').style.display = 'none';
+            document.getElementById('pokedex-section').style.display = 'block';
+            document.getElementById('trainer-name').innerText = data.username;
+            loadMyPokedex();
+        }
+
+        async function loadMyPokedex() {
+            const response = await fetch('/api/pokedex/my-pokedex', {
+                headers: { 'Authorization': `Bearer ${userToken}` }
+            });
+            const data = await response.json();
+            if (response.ok) {
+                document.getElementById('caught-list').innerHTML = `
+                        <p><b>Total Caught:</b> ${data.caughtCount}</p>
+                        <p><b>Pokémon IDs:</b> ${data.caughtPokemonIds.join(', ') || 'None yet'}</p>
+                    `;
+            }
+        }
+
+        async function catchPokemon() {
+            const pokemonId = document.getElementById('pokemon-id').value;
+            if (!pokemonId) return;
+
+            const response = await fetch(`/api/pokedex/catch/${pokemonId}`, {
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${userToken}` }
+            });
+
+            if (response.ok) {
+                document.getElementById('pokemon-id').value = '';
+                loadMyPokedex();
+            }
+        }
+
+        function logout() {
+            userToken = "";
+            document.getElementById('auth-container').style.display = 'block';
+            document.getElementById('pokedex-section').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

@@ -25,6 +25,10 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
+// Enable serving index.html and static files (CSS/JS)
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
