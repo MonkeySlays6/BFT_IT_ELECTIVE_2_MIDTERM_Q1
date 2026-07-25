@@ -1,4 +1,7 @@
-﻿public static class StaticData
+﻿namespace WebApplication1.Data
 {
-    public static List<UserPokemon> UserPokemons { get; set; } = new();
+    public static class StaticData
+    {
+        public static List<UserPokemon> UserPokemons { get; set; } = new();
+    }
 }
