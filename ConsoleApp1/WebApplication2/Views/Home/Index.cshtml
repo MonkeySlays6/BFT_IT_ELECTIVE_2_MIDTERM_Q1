@@ -1,0 +1,40 @@
+﻿@model List<WebApplication2.Models.Pokemon>
+@{
+    ViewData["Title"] = "National Pokedex";
+}
+
+<div class="text-center mb-4">
+    <h1 class="display-4 text-danger">National Pokedex</h1>
+    <p>Catch 'em all, @User.Identity.Name!</p>
+</div>
+
+<!-- NEW: The Search Bar -->
+<form method="get" action="/Home/Index" class="mb-5">
+    <div class="input-group w-50 mx-auto">
+        <input type="text" name="searchString" class="form-control border-danger" placeholder="Search for a Pokémon (e.g., pikachu)..." />
+        <button type="submit" class="btn btn-danger">Search</button>
+        <a href="/Home/Index" class="btn btn-outline-secondary">Clear</a>
+    </div>
+</form>
+
+<div class="row">
+    @foreach (var pokemon in Model)
+    {
+        <div class="col-md-2 col-sm-4 col-6 mb-4">
+            <div class="card text-center border-danger shadow-sm h-100">
+                <!-- Added Image -->
+                <img src="@pokemon.ImageUrl" class="card-img-top mx-auto mt-2" alt="@pokemon.Name" style="width: 96px; height: 96px;" />
+                <div class="card-body p-2 d-flex flex-column">
+                    <h6 class="card-title text-capitalize fw-bold mb-0">@pokemon.Name</h6>
+                    <small class="text-muted mb-2">#@pokemon.Id</small>
+
+                    <!-- Catch Button Form -->
+                    <form method="post" action="/Home/Catch" class="mt-auto">
+                        <input type="hidden" name="pokemonName" value="@pokemon.Name" />
+                        <button type="submit" class="btn btn-sm btn-danger w-100 rounded-pill">Catch!</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+</div>

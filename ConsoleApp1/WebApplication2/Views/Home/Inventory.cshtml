@@ -1,0 +1,33 @@
+﻿@model List<WebApplication2.Models.Pokemon>
+@{
+    ViewData["Title"] = "My PC Box";
+}
+
+<div class="text-center mb-4">
+    <h1 class="display-4 text-primary">My PC Box</h1>
+    <p>You have caught <strong>@Model.Count</strong> Pokémon!</p>
+</div>
+
+@if (Model.Count == 0)
+{
+    <div class="alert alert-info text-center">
+        You haven't caught any Pokémon yet. Go back to the Pokedex to catch some!
+    </div>
+}
+else
+{
+    <div class="row">
+        @foreach (var pokemon in Model)
+        {
+            <div class="col-md-2 col-sm-4 col-6 mb-4">
+                <div class="card text-center border-primary shadow-sm h-100 bg-light">
+                    <img src="@pokemon.ImageUrl" class="card-img-top mx-auto mt-2" alt="@pokemon.Name" style="width: 96px; height: 96px;" />
+                    <div class="card-body p-2">
+                        <h6 class="card-title text-capitalize fw-bold mb-0">@pokemon.Name</h6>
+                        <small class="text-muted">#@pokemon.Id</small>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
