@@ -55,6 +55,9 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
-/.idea/
-/ConsoleApp1/.vs/ConsoleApp1
-/ConsoleApp1/.vs/ProjectEvaluation
+# User-specific files / IDEs
+.vs/
+.idea/
+*.user
+*.userossc
+*.sln.docstates
