@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Register your custom UserService so it can be injected into endpoints
+// Register custom UserService so it can be injected into endpoints
 builder.Services.AddScoped<UserService>();
 
 var app = builder.Build();
@@ -20,6 +20,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Enable static files (looks inside wwwroot folder for index.html)
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
 // 3. Define Endpoints
 
@@ -57,4 +61,5 @@ app.MapGet("/api/users/{id:int}/profile", (int id, UserService userService) =>
     return Results.Ok(profile);
 });
 
+// Run the application (Must be at the very end!)
 app.Run();

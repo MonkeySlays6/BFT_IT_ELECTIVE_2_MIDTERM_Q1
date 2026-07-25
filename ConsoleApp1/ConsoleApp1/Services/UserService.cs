@@ -1,6 +1,6 @@
 ﻿namespace ConsoleApp1.Services;
 
-using ConsoleApp1.DTO;
+using ConsoleApp1.DTOs;
 using ConsoleApp1.DTOs;
 using ConsoleApp1.Models;
 
